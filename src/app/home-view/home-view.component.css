@@ -1,0 +1,28 @@
+
+.nav-title{
+    margin: 2rem;
+}
+
+.title1{
+    text-align: center;
+    size: 2rem;
+    font-weight: bold;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.addButton{
+    background-color: #4ABE86;
+    color: #FFF;
+    height: 50px;
+    width: 100px;
+}
+
+.table{
+    width: 100%;
+}
