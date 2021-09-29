@@ -26,3 +26,7 @@
 .table{
     width: 100%;
 }
+
+.mat-row:hover {
+    background-color: #E9E9E9;
+}

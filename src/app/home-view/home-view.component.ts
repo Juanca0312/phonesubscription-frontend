@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
 
 export interface PeriodicElement {
   name: string;
   position: number;
   weight: number;
   symbol: string;
+}
+
+export interface PhoneSubscriptions {
+  id: number;
+  month: string;
+  network_technology: string;
+  plan_type: string;
+  subscriptions: number;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -29,10 +38,24 @@ export class HomeViewComponent implements OnInit {
 
   constructor() { }
 
+  subscriptions: PhoneSubscriptions[] = [];
+
+
+
   ngOnInit(): void {
+    this.getAll();
   }
 
-  displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol'];
+  displayedColumns: string[] = ['month', 'network_technology', 'plan_type', 'subscriptions'];
   dataSource = ELEMENT_DATA;
+
+  getAll(){
+    axios.get('http://localhost:8080/api/phoneSubscriptions')
+    .then(response => {
+      console.log(response.data);
+      this.subscriptions = response.data;
+      console.log(this.subscriptions[0].month);
+    });
+  }
 
 }
