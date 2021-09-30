@@ -1,0 +1,31 @@
+.mat-dialog-title{
+    text-align: center;
+    margin: 1rem 1rem 2rem 1rem;
+    font-size: 2rem;
+}
+
+.row-2-col{
+    margin-left: -5rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.addButton{
+    background-color:#7B6BEF;
+    color: #FFF;
+    height: 50px;
+}
+
+.deleteButton{
+    background-color:#E15963;
+    color: #FFF;
+    height: 50px;
+}
+
+
+.row{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
+

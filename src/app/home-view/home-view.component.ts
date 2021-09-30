@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import axios from 'axios';
 import {MatDialog} from '@angular/material/dialog';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 export interface PhoneSubscriptions {
   id: number;
@@ -39,6 +40,14 @@ export class HomeViewComponent implements OnInit {
 
   openAddDialog(){
     this.dialog.open(AddDialogComponent).afterClosed().subscribe(() => this.getAll());
+  }
+
+
+  public editModal(param: any){
+    console.log(param.network_technology)
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data: param
+    }).afterClosed().subscribe(() => this.getAll());
   }
 
 }
