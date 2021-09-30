@@ -1,27 +1,27 @@
 <h1 mat-dialog-title>Nueva Subscripción</h1>
 
 <div mat-dialog-content>
-  <p>Seleccione el mes y año</p>
-  <div class="row-2-col">
+  <p>Seleccione el año</p>
     <mat-form-field appearance="outline">
       <mat-label>Año</mat-label>
-      <input matInput type="number" placeholder="Ex. 2018">
+      <input matInput type="number" [(ngModel)]="year" placeholder="Ex. 2018">
       <mat-icon matSuffix>date_range</mat-icon>
     </mat-form-field>
 
+    <p>Seleccione el mes</p>
     <mat-form-field appearance="outline">
       <mat-label>Mes</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="month" name="month">
         <mat-option *ngFor="let mes of meses" [value]="mes.value">
           {{mes.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
+
   <p>Seleccione el tipo de tecnología</p>
   <mat-form-field appearance="outline">
     <mat-label>Tecnlogía</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]="tech">
       <mat-option *ngFor="let tech of technology" [value]="tech.value">
         {{tech.viewValue}}
       </mat-option>
@@ -31,7 +31,7 @@
   <p>Seleccione el plan</p>
   <mat-form-field appearance="outline">
     <mat-label>Plan</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]="plan">
       <mat-option *ngFor="let plan of plans" [value]="plan.value">
         {{plan.viewValue}}
       </mat-option>
@@ -41,14 +41,11 @@
   <p>Ingrese número de subscripciones</p>
   <mat-form-field appearance="outline">
     <mat-label>Subscripciones</mat-label>
-    <input matInput type="number" placeholder="Ex. 1200">
-    <mat-icon matSuffix>date_range</mat-icon>
+    <input [(ngModel)]="subcription" matInput type="number" placeholder="Ex. 1200">
   </mat-form-field>
-
-
 </div>
 
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button class="addButton">Agregar Subscripción</button>
+<div class="row">
+  <button mat-stroked-button mat-dialog-close>Cancelar</button>
+  <button mat-button class="addButton" (click)="addSubscription()">Agregar</button>
 </div>

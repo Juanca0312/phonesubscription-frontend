@@ -1,7 +1,11 @@
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
+
 
 interface Mes {
-  value: number;
+  value: string;
   viewValue: string;
 }
 
@@ -23,26 +27,38 @@ interface Plan {
 })
 export class AddDialogComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor(private dialog: MatDialog) { }
+
+
 
   ngOnInit(): void {
   }
 
   meses: Mes[] = [
-    {value: 1, viewValue: 'Enero'},
-    {value: 2, viewValue: 'Febrero'},
-    {value: 3, viewValue: 'Marzo'},
-    {value: 4, viewValue: 'Abril'},
-    {value: 5, viewValue: 'Mayo'},
-    {value: 6, viewValue: 'Junio'},
-    {value: 7, viewValue: 'Julio'},
-    {value: 8, viewValue: 'Agosto'},
-    {value: 9, viewValue: 'Septiembre'},
-    {value: 10, viewValue: 'Octubre'},
-    {value: 11, viewValue: 'Noviembre'},
-    {value: 12, viewValue: 'Diciembre'}
+    {value: '01', viewValue: 'Enero'},
+    {value: '02', viewValue: 'Febrero'},
+    {value: '03', viewValue: 'Marzo'},
+    {value: '04', viewValue: 'Abril'},
+    {value: '05', viewValue: 'Mayo'},
+    {value: '06', viewValue: 'Junio'},
+    {value: '07', viewValue: 'Julio'},
+    {value: '08', viewValue: 'Agosto'},
+    {value: '09', viewValue: 'Septiembre'},
+    {value: '10', viewValue: 'Octubre'},
+    {value: '11', viewValue: 'Noviembre'},
+    {value: '12', viewValue: 'Diciembre'}
 
   ]
+
+  year: string = "";
+  month: string = "";
+  tech: string = "";
+  plan: string = "";
+  subcription: number = 0;
+
+
 
   technology: Technology[] = [
     {value: '2G', viewValue: '2G'},
@@ -54,4 +70,28 @@ export class AddDialogComponent implements OnInit {
     {value: 'pre-paid', viewValue: 'pre-paid'},
     {value: 'post-paid', viewValue: 'post-paid'},
   ]
+
+  addSubscription(){
+    if(this.year == "" || this.month == "" || this.tech == "" || this.plan == "" || this.subcription == 0){
+      alert("Completa todos los campos")
+    }else{
+      let year_month = this.year+'-'+this.month+'-01'
+      console.log(year_month);
+      axios.post('https://phonesubcriptions-api.azurewebsites.net/api/phoneSubscriptions',{
+        month: year_month,
+        network_technology: this.tech,
+        plan_type: this.plan,
+        subscriptions: this.subcription
+      }).then(response => {
+        alert("Agregado correctamente");
+        this.onClose()
+
+      })
+    }
+
+  }
+
+  onClose( ){
+    const dialogRef = this.dialog.closeAll()
+  }
 }

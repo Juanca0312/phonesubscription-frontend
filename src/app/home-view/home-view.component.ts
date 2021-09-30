@@ -33,16 +33,12 @@ export class HomeViewComponent implements OnInit {
   getAll(){
     axios.get('https://phonesubcriptions-api.azurewebsites.net/api/phoneSubscriptions')
     .then(response => {
-      console.log(response.data);
       this.subscriptions = response.data;
-      console.log(this.subscriptions[0].month);
     });
   }
 
   openAddDialog(){
-    this.dialog.open(AddDialogComponent, {
-      width:'30%'
-    });
+    this.dialog.open(AddDialogComponent).afterClosed().subscribe(() => this.getAll());
   }
 
 }
