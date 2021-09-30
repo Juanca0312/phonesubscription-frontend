@@ -31,7 +31,7 @@ export class HomeViewComponent implements OnInit {
   displayedColumns: string[] = ['month', 'network_technology', 'plan_type', 'subscriptions'];
 
   getAll(){
-    axios.get('http://localhost:8080/api/phoneSubscriptions')
+    axios.get('https://phonesubcriptions-api.azurewebsites.net/api/phoneSubscriptions')
     .then(response => {
       console.log(response.data);
       this.subscriptions = response.data;
