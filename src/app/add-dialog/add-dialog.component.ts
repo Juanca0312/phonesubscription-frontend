@@ -71,7 +71,7 @@ export class AddDialogComponent implements OnInit {
   ]
 
   addSubscription(){
-    if(this.year == "" || this.month == "" || this.tech == "" || this.plan == "" || this.subcription == 0){
+    if(this.year == "" || this.month == "" || this.tech == "" || this.plan == "" || this.subcription <= 0){
       alert("Completa todos los campos")
     }else{
       let year_month = this.year+'-'+this.month+'-01'

@@ -1,44 +1,43 @@
 <div class="nav-title">
-    <h1 class="title1">
-        Mobile Phone Subscriptions
-    </h1>
+  <h1 class="title1">
+    Mobile Phone Subscriptions
+  </h1>
 </div>
 
 <div class="container">
-        <form >
-            <mat-form-field class="" appearance="fill">
-                <mat-label>Año</mat-label>
-                <input matInput placeholder="Ex.2018" >
-              </mat-form-field>
-           </form>
-        <button mat-raised-button class="addButton" (click)="openAddDialog()">Agregar</button>
+  <form>
+    <mat-form-field [style.width.px]=150 appearance="fill">
+      <mat-label>Ingrese año o mes</mat-label>
+      <input matInput placeholder="Ex.2018" [(ngModel)]="yearInput" name="year" (keyup)="onKeypressEvent($event)">
+    </mat-form-field>
+  </form>
+  <button mat-raised-button class="addButton" (click)="openAddDialog()">Agregar</button>
 </div>
 
 <div class="container">
-    <table mat-table [dataSource]="subscriptions" class="mat-elevation-z8 table">
-     
-        <ng-container matColumnDef="month">
-          <th mat-header-cell *matHeaderCellDef> Año </th>
-          <td mat-cell *matCellDef="let subscription"> {{subscription.month  | date: 'yyyy-MM' : '+0000'}} </td>
-        </ng-container>
-      
-        <ng-container matColumnDef="network_technology">
-          <th mat-header-cell *matHeaderCellDef> Network Technology </th>
-          <td mat-cell *matCellDef="let subscription"> {{subscription.network_technology}} </td>
-        </ng-container>
-      
-        <ng-container matColumnDef="plan_type">
-          <th mat-header-cell *matHeaderCellDef> Plan Type </th>
-          <td mat-cell *matCellDef="let subscription"> {{subscription.plan_type}} </td>
-        </ng-container>
+  <table mat-table [dataSource]="subscriptions" class="mat-elevation-z8 table">
 
-        <ng-container matColumnDef="subscriptions">
-          <th mat-header-cell *matHeaderCellDef> Subscriptions </th>
-          <td mat-cell *matCellDef="let subscription"> {{subscription.subscriptions | number:'1.0':'en-US'}} </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row (click)="editModal(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+    <ng-container matColumnDef="month">
+      <th mat-header-cell *matHeaderCellDef> Año </th>
+      <td mat-cell *matCellDef="let subscription"> {{subscription.month  | date: 'yyyy-MM' : '+0000'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="network_technology">
+      <th mat-header-cell *matHeaderCellDef> Network Technology </th>
+      <td mat-cell *matCellDef="let subscription"> {{subscription.network_technology}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="plan_type">
+      <th mat-header-cell *matHeaderCellDef> Plan Type </th>
+      <td mat-cell *matCellDef="let subscription"> {{subscription.plan_type}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="subscriptions">
+      <th mat-header-cell *matHeaderCellDef> Subscriptions </th>
+      <td mat-cell *matCellDef="let subscription"> {{subscription.subscriptions | number:'1.0':'en-US'}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (click)="editModal(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>
-

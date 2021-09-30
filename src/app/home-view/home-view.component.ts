@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import axios from 'axios';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
@@ -22,6 +22,7 @@ export class HomeViewComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   subscriptions: PhoneSubscriptions[] = [];
+  auxSubscriptions : PhoneSubscriptions[] = [];
 
 
 
@@ -31,23 +32,46 @@ export class HomeViewComponent implements OnInit {
 
   displayedColumns: string[] = ['month', 'network_technology', 'plan_type', 'subscriptions'];
 
-  getAll(){
+  yearInput: string = "";
+
+  getAll() {
     axios.get('https://phonesubcriptions-api.azurewebsites.net/api/phoneSubscriptions')
-    .then(response => {
-      this.subscriptions = response.data;
-    });
+      .then(response => {
+        this.subscriptions = response.data;
+        this.auxSubscriptions = this.subscriptions;
+      });
   }
 
-  openAddDialog(){
+  openAddDialog() {
     this.dialog.open(AddDialogComponent).afterClosed().subscribe(() => this.getAll());
   }
 
 
-  public editModal(param: any){
-    console.log(param.network_technology)
+  public editModal(param: any) {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: param
     }).afterClosed().subscribe(() => this.getAll());
+  }
+
+  onKeypressEvent(event: KeyboardEvent) {
+    
+    var entra = 0;
+    this.subscriptions = this.auxSubscriptions;
+    var auxSubs = this.subscriptions;
+    this.subscriptions = [];
+
+    for(let subscription of auxSubs){
+      if(subscription.month.includes(this.yearInput)){
+        entra = 1;
+        this.subscriptions.push(subscription);
+      }
+    }
+
+    if(entra == 0){
+      alert("Año o mes no válido");
+      this.subscriptions = this.auxSubscriptions;
+    }
+
   }
 
 }
