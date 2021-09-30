@@ -75,7 +75,6 @@ export class AddDialogComponent implements OnInit {
       alert("Completa todos los campos")
     }else{
       let year_month = this.year+'-'+this.month+'-01'
-      console.log(year_month);
       axios.post('https://phonesubcriptions-api.azurewebsites.net/api/phoneSubscriptions',{
         month: year_month,
         network_technology: this.tech,

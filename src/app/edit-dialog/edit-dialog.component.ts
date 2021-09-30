@@ -82,10 +82,8 @@ export class EditDialogComponent implements OnInit {
   editSubscription() {
 
     if (this.year == null || this.month == null || this.tech == null || this.plan == null || this.subcription <= 0 || parseInt(this.year, 10) > 3000) {
-      console.log(this.year);
       alert("Por favor llene campos válidos")
     } else {
-      console.log(this.year);
       let year_month = this.year + '-' + this.month + '-01'
       axios.put(`https://phonesubcriptions-api.azurewebsites.net/api/phoneSubscriptions/${this.data.id}`, {
         month: year_month,
