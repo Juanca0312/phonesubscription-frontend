@@ -11,7 +11,7 @@
                 <input matInput placeholder="Ex.2018" >
               </mat-form-field>
            </form>
-        <button mat-raised-button class="addButton">Agregar</button>
+        <button mat-raised-button class="addButton" (click)="openAddDialog()">Agregar</button>
 </div>
 
 <div class="container">
@@ -19,7 +19,7 @@
      
         <ng-container matColumnDef="month">
           <th mat-header-cell *matHeaderCellDef> Año </th>
-          <td mat-cell *matCellDef="let subscription"> {{subscription.month}} </td>
+          <td mat-cell *matCellDef="let subscription"> {{subscription.month  | date: 'yyyy-MM' : '+0000'}} </td>
         </ng-container>
       
         <ng-container matColumnDef="network_technology">
@@ -34,7 +34,7 @@
 
         <ng-container matColumnDef="subscriptions">
           <th mat-header-cell *matHeaderCellDef> Subscriptions </th>
-          <td mat-cell *matCellDef="let subscription"> {{subscription.subscriptions}} </td>
+          <td mat-cell *matCellDef="let subscription"> {{subscription.subscriptions | number:'1.0':'en-US'}} </td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

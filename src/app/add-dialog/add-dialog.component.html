@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Nueva Subscripción</h1>
+
+<div mat-dialog-content>
+  <p>Seleccione el mes y año</p>
+  <div class="row-2-col">
+    <mat-form-field appearance="outline">
+      <mat-label>Año</mat-label>
+      <input matInput type="number" placeholder="Ex. 2018">
+      <mat-icon matSuffix>date_range</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Mes</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let mes of meses" [value]="mes.value">
+          {{mes.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <p>Seleccione el tipo de tecnología</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Tecnlogía</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let tech of technology" [value]="tech.value">
+        {{tech.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>Seleccione el plan</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Plan</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let plan of plans" [value]="plan.value">
+        {{plan.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>Ingrese número de subscripciones</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Subscripciones</mat-label>
+    <input matInput type="number" placeholder="Ex. 1200">
+    <mat-icon matSuffix>date_range</mat-icon>
+  </mat-form-field>
+
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button class="addButton">Agregar Subscripción</button>
+</div>
